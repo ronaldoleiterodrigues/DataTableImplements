@@ -40,6 +40,15 @@
 
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Re</th>
+                <th>Número Ativo</th>
+                <th>Sexo</th>
+            </tr>
+        </tfoot>
 
     </table>
 
@@ -54,43 +63,43 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
     <script>
+        $(document).ready(function () {
+            var myTable = $("#tabela").DataTable({
 
-        var myTable = $("#tabela").DataTable({
-
-            paging: true,
-            searching: true,
-            info: false,
-        });
-     
-
-        myTable
-            .columns()
-            .flatten()
-            .each(function (colID) {
-
-                var mySelectList = $("<select />")
-                    .appendTo(myTable.column(colID).header())
-                    .on("change", function () {
-                        myTable.column(colID).search($(this).val());
-                        myTable.column(colID).draw();
-                    });
-
-                myTable
-                    .column(colID)
-                    .cache("search")
-                    .sort()
-                    .each(function (param) {
-                        mySelectList.append(
-                            $('<option value="' + param + '">'
-                                + param + "</option>")
-                        );
-                    });
+                paging: true,
+                searching: true,
+                info: false,
             });
 
 
-        myTable.on('click', 'tbody tr', function (e) {
-            e.currentTarget.classList.toggle('selected');
-        });
+            myTable
+                .columns()
+                .flatten()
+                .each(function (colID) {
 
+                    var mySelectList = $("<select />")
+                        .appendTo(myTable.column(colID).header())
+                        .on("change", function () {
+                            myTable.column(colID).search($(this).val());
+                            myTable.column(colID).draw();
+                        });
+
+                    myTable
+                        .column(colID)
+                        .cache("search")
+                        .sort()
+                        .each(function (param) {
+                            mySelectList.append(
+                                $('<option value="' + param + '">'
+                                    + param + "</option>")
+                            );
+                        });
+                });
+
+
+            myTable.on('click', 'tbody tr', function (e) {
+                e.currentTarget.classList.toggle('selected');
+            });
+        });
     </script>
 }
