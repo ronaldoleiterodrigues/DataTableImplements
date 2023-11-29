@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DataTableImplements.Models.Colaboradores>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@section Estilos{
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel=" stylesheet" />
+}
+
+<div class="container">
+
+    <table class="display grid" style="width:100%" id="tabela">
+
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Re</th>
+                <th>Número Ativo</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(itemDisplay=>item.Id)</td>
+                    <td> @Html.DisplayFor(itemDisplay=>item.Descricao)</td>
+                    <td> @Html.DisplayFor(itemDisplay=>item.Re)</td>
+                    <td> @Html.DisplayFor(itemDisplay=>item.NumeroAtivo)</td>
+                    <td>
+                        <select class="editable-select">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                            <option value="p">Prefiro não informar</option>
+                        </select>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script>
+
+        var myTable = $("#tabela").DataTable({
+
+            paging: true,
+            searching: true,
+            info: false,
+        });
+     
+
+        myTable
+            .columns()
+            .flatten()
+            .each(function (colID) {
+
+                var mySelectList = $("<select />")
+                    .appendTo(myTable.column(colID).header())
+                    .on("change", function () {
+                        myTable.column(colID).search($(this).val());
+                        myTable.column(colID).draw();
+                    });
+
+                myTable
+                    .column(colID)
+                    .cache("search")
+                    .sort()
+                    .each(function (param) {
+                        mySelectList.append(
+                            $('<option value="' + param + '">'
+                                + param + "</option>")
+                        );
+                    });
+            });
+
+
+        myTable.on('click', 'tbody tr', function (e) {
+            e.currentTarget.classList.toggle('selected');
+        });
+
+    </script>
+}
