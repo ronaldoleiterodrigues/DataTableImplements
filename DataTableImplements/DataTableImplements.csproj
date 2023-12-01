@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configurations\**" />
+    <Content Remove="Configurations\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <None Remove="Configurations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\ColaboradorController.cs" />
     <Compile Remove="Controllers\PessoaController.cs" />
   </ItemGroup>

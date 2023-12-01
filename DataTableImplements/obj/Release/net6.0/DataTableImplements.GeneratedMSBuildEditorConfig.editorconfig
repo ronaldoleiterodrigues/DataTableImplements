@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\LedCorp\Projetos\GIT\DataTableImplements\DataTableImplements
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/LedCorp/Projetos/GIT/DataTableImplements/DataTableImplements/Views/Home/GetDataSet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHZXREYXRhU2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/LedCorp/Projetos/GIT/DataTableImplements/DataTableImplements/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

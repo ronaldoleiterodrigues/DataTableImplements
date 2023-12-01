@@ -1,4 +1,5 @@
 ﻿using DataTableImplements.Models;
+using DataTableImplements.Models.DataSetGrid;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -36,6 +37,18 @@ namespace DataTableImplements.Controllers
             var listColaboradores =  colaboradores.GetAll();
 
             return  new JsonResult(listColaboradores);
+        }
+        [HttpGet]
+        [Route("[controller]/dataset")]
+        public async Task<IActionResult> GetDataSet()
+        {
+            Colaboradores colaboradores = new Colaboradores();
+            var listColaboradores = colaboradores.GetAll();
+
+            GeradorDataSetTest ds = new GeradorDataSetTest();
+            var data = ds.Converter(listColaboradores,"Lista de Colaboradores");
+           
+            return View(data);
         }
 
 

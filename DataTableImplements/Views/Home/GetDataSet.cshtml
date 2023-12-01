@@ -1,0 +1,37 @@
+﻿@using System.Data;
+@model DataSet
+
+<div class="container">
+    <table class="display grid" style="width:100%" id="tabela">
+        <thead>
+            <tr>
+               <th>Código</th>
+                <th>Descrição</th>
+                <th>Re</th>
+                <th>Número Ativo</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow item in Model.Tables[0].Rows)
+                {
+            <tr>
+                <td> @item["Id"] </td>
+                <td> @item["Descricao"] </td>
+                <td> @item["Re"] </td>
+                <td> @item["NumeroAtivo"] </td>
+                <td> @item["Local"]</td>
+            </tr>
+                }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Re</th>
+                <th>Número Ativo</th>
+                <th>Sexo</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
